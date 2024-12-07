@@ -1,19 +1,10 @@
-package cartFlowService.domain.models;
+package cartFlowService.application.request;
 
-public class Item {
+public class CreateCartRequest {
 
-    private int    id;
+    private int id;
     private String description;
     private double amount;
-
-    public Item(int id, String description, double amount) {
-        this.id          = id;
-        this.description = description;
-        this.amount      = amount;
-    }
-
-    public Item() {
-    }
 
     public int getId() {
         return id;

@@ -1,4 +1,4 @@
-package cart_flow_service_onebox;
+package cartFlowService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ECommerceCartFlowServiceApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(ECommerceCartFlowServiceApplication.class, args);
 	}
 

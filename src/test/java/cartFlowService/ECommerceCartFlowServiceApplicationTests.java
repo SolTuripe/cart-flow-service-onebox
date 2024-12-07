@@ -1,4 +1,4 @@
-package cart_flow_service_onebox;
+package cartFlowService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

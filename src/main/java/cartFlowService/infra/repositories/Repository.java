@@ -1,6 +1,7 @@
 package cartFlowService.infra.repositories;
 
 import cartFlowService.domain.models.Cart;
+import cartFlowService.domain.models.CartMaskId;
 import cartFlowService.domain.storage.CartRepository;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,16 @@ public class Repository implements CartRepository {
     public String createCart(Cart cart) {
         storage.put(cart.getId().value, cart);
         return cart.getId().value.toString();
+    }
+
+    @Override
+    public boolean findMakId(CartMaskId cartMaskId) {
+        return storage.containsKey(cartMaskId.value);
+    }
+
+    @Override
+    public void deleteCartByMaskId(CartMaskId cartMaskId) {
+        storage.remove(cartMaskId.value);
     }
 
 }

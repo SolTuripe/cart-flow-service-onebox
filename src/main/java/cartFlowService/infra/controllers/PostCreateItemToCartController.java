@@ -35,7 +35,7 @@ public class PostCreateItemToCartController {
         CreateCartResponse response = new CreateCartResponse(
                 200,
                 cartId,
-                "Cart created",
+                "Cart created successfully",
                 "OK");
 
         return ResponseEntity.ok().header("content-type", "application/json")

@@ -13,17 +13,19 @@ import static org.mockito.Mockito.verify;
 
 public class CreateCartUseCaseTest {
 
-    private final CartRepository cartRepository;
-    private final CreateCart createCart;
+    private final CartRepository     cartRepository;
+    private final DeleteCartAfterTTL deleteCartAfterTTL;
+    private final CreateCart         createCart;
 
     CreateCartUseCaseTest() {
-        this.cartRepository = mock(CartRepository.class);
-        this.createCart     = new CreateCart(cartRepository);
+        this.cartRepository     = mock(CartRepository.class);
+        this.deleteCartAfterTTL = mock(DeleteCartAfterTTL.class);
+        this.createCart         = new CreateCart(cartRepository, deleteCartAfterTTL);
     }
 
     @Test
     void shouldCreateCart() {
-        Item item                = new Item(22, "party shoes", 25.99);
+        Item item                = new Item(12, "party shoes", 25.99);
         ArrayList<Item> itemList = new ArrayList<>();
         itemList.add(item);
 

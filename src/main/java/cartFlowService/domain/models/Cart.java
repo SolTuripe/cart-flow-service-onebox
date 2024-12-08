@@ -15,7 +15,7 @@ public class Cart {
     }
 
     public Cart(ArrayList<Item> itemList) {
-        this.id = new CartMaskId();
+        this.id       = new CartMaskId();
         this.itemList = itemList;
     }
 

@@ -37,4 +37,9 @@ public class Repository implements CartRepository {
         storage.remove(cartMaskId.value);
     }
 
+    @Override
+    public Cart getCartById(UUID cartId) {
+        return storage.get(cartId);
+    }
+
 }

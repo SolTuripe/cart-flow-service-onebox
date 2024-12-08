@@ -23,7 +23,7 @@ public class DeleteCartUseCaseTest {
         CartMaskId cartMaskId = new CartMaskId("6e55c340-9992-4d09-8986-8c19fc712f0b");
         when(cartRepository.findMakId(any(CartMaskId.class))).thenReturn(true);
 
-        deleteCart.deleteCart(cartMaskId);
+        deleteCart.deleteCart(cartMaskId.value);
 
         verify(cartRepository).deleteCartByMaskId(any(CartMaskId.class));
     }

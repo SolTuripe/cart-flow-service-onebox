@@ -3,8 +3,6 @@ package cartFlowService.infra.controllers;
 import cartFlowService.application.response.DeleteCartResponse;
 import cartFlowService.application.useCases.DeleteCart;
 import cartFlowService.domain.errors.CartNotFoundError;
-import cartFlowService.domain.models.CartMaskId;
-import cartFlowService.domain.storage.CartRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,20 +15,14 @@ import java.util.UUID;
 public class DeleteCartController {
 
     DeleteCart     deleteCart;
-    CartRepository cartRepository;
 
-    public DeleteCartController(DeleteCart deleteCart, CartRepository cartRepository) {
+    public DeleteCartController(DeleteCart deleteCart) {
         this.deleteCart = deleteCart;
-        this.cartRepository = cartRepository;
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<DeleteCartResponse> deleteCartByMaskId(@PathVariable UUID id) {
-        CartMaskId cartMaskId = new CartMaskId(id.toString());
-
-        if(!cartRepository.findMakId(cartMaskId)) throw new CartNotFoundError(cartMaskId.value.toString());
-
-        deleteCart.deleteCart(cartMaskId);
+    public ResponseEntity<DeleteCartResponse> deleteCartById(@PathVariable UUID id) {
+        deleteCart.deleteCart(id);
 
         DeleteCartResponse response = new DeleteCartResponse(
                 200,

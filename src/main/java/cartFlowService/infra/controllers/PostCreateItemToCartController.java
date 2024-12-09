@@ -42,14 +42,6 @@ public class PostCreateItemToCartController {
                 .body(response);
     }
 
-    /**
-     * Converts a CreateCartRequest object into an Item object
-     * Validates that the provided amount is greater than zero
-     *
-     * @param request the CreateCartRequest containing item details to be mapped
-     * @return a new Item object constructed from the request data
-     * @throws InvalidAmountError if the amount in the request is less than or equal to zero
-     */
     private Item mapRequestToItem(CreateCartRequest request) {
         if (request.getAmount() <= 0) {
             throw new InvalidAmountError();
@@ -62,12 +54,6 @@ public class PostCreateItemToCartController {
         );
     }
 
-    /**
-     * Handles InvalidAmountError exceptions thrown during application execution
-     *
-     * @param ex The `InvalidAmountError` exception containing the error message
-     * @return A `ResponseEntity` object with status code 400 and a JSON message describing the error
-     */
     @ExceptionHandler(InvalidAmountError.class)
     public ResponseEntity<String> handleInvalidAmountError(InvalidAmountError ex) {
         return ResponseEntity

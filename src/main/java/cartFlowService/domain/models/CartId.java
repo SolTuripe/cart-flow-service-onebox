@@ -2,15 +2,15 @@ package cartFlowService.domain.models;
 
 import java.util.UUID;
 
-public class CartMaskId {
+public class CartId {
 
     public final UUID value;
 
-    public CartMaskId() {
+    public CartId() {
         this.value = UUID.randomUUID();
     }
 
-    public CartMaskId(String value) {
+    public CartId(String value) {
         this.value = UUID.fromString(value);
     }
 

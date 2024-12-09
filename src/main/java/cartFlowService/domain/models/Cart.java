@@ -5,25 +5,25 @@ import java.util.ArrayList;
 
 public class Cart {
 
-    private CartMaskId      id;
+    private CartId          id;
     private ArrayList<Item> itemList;
     private LocalDateTime   createdAt;
 
-    public Cart(CartMaskId id, ArrayList<Item> itemList) {
+    public Cart(CartId id, ArrayList<Item> itemList) {
         this.id       = id;
         this.itemList = itemList;
     }
 
     public Cart(ArrayList<Item> itemList) {
-        this.id       = new CartMaskId();
+        this.id       = new CartId();
         this.itemList = itemList;
     }
 
-    public CartMaskId getId() {
+    public CartId getId() {
         return id;
     }
 
-    public void setId(CartMaskId id) {
+    public void setId(CartId id) {
         this.id = id;
     }
 

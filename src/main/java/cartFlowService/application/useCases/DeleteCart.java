@@ -1,7 +1,7 @@
 package cartFlowService.application.useCases;
 
 import cartFlowService.domain.errors.CartNotFoundError;
-import cartFlowService.domain.models.CartMaskId;
+import cartFlowService.domain.models.CartId;
 import cartFlowService.domain.storage.CartRepository;
 
 import java.util.UUID;
@@ -15,9 +15,9 @@ public class DeleteCart {
     }
 
     public void deleteCart(UUID id) throws CartNotFoundError {
-        CartMaskId cartMaskId = new CartMaskId(id.toString());
-        if (!cartRepository.findMakId(cartMaskId)) throw new CartNotFoundError(cartMaskId.value.toString());
+        CartId cartId = new CartId(id.toString());
+        if (!cartRepository.findMakId(cartId)) throw new CartNotFoundError(cartId.value.toString());
 
-        cartRepository.deleteCartByMaskId(cartMaskId);
+        cartRepository.deleteCartByMaskId(cartId);
     }
 }

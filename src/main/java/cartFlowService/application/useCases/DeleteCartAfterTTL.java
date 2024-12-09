@@ -1,8 +1,6 @@
 package cartFlowService.application.useCases;
 
-import cartFlowService.application.response.DeleteCartAfterTTLResponse;
-import cartFlowService.domain.models.CartMaskId;
-import cartFlowService.domain.storage.CartRepository;
+import cartFlowService.infra.DeleteCartTTL;
 
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -18,19 +16,7 @@ public class DeleteCartAfterTTL {
         this.ttl       = ttl;
     }
 
-    public void scheduleCartDeletion(CartMaskId cartMaskId, CartRepository cartRepository) {
-        long start = System.currentTimeMillis();
-        scheduler.schedule(() -> {
-            long execStart = System.currentTimeMillis();
-            cartRepository.deleteCartByMaskId(cartMaskId);
-
-            // Use the instance of DeleteCartAfterTTLResponse
-            DeleteCartAfterTTLResponse response = new DeleteCartAfterTTLResponse(
-                    "Cart with id: " + cartMaskId.value + " deleted after: " + ttl + " min",
-                    execStart - start
-            );
-
-            System.out.println(response);
-        }, ttl, TimeUnit.MINUTES);
+    public void scheduleCartDeletion(DeleteCartTTL deleteCartTTL) {
+        scheduler.schedule(deleteCartTTL, ttl, TimeUnit.MILLISECONDS);
     }
 }

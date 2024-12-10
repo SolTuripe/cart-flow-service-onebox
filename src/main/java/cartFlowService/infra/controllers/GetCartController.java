@@ -4,7 +4,6 @@ import cartFlowService.application.response.GetCartResponse;
 import cartFlowService.application.useCases.GetCart;
 import cartFlowService.domain.errors.CartNotFoundError;
 import cartFlowService.domain.models.Cart;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +15,9 @@ import java.util.UUID;
 @CrossOrigin(origins = "*")
 public class GetCartController {
 
-    ObjectMapper objectMapper;
     GetCart      getCart;
 
-    public GetCartController(ObjectMapper objectMapper, GetCart getCart) {
-        this.objectMapper = objectMapper;
+    public GetCartController(GetCart getCart) {
         this.getCart      = getCart;
     }
 

@@ -18,7 +18,6 @@ public class CreateCart {
     }
 
     public String createCart(ArrayList<Item> itemList) throws RuntimeException {
-        // Create the cart with the items
         Cart cart = new Cart(itemList);
 
         // Schedule cart deletion after TTL 10 min (600 sec)

@@ -1,18 +1,9 @@
 package cartFlowService.application.request;
 
-public class CreateCartRequest {
+public class PatchCartRequest {
 
-    private int    id;
     private String description;
     private double amount;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getDescription() {
         return description;

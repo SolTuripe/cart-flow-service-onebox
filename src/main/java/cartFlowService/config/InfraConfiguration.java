@@ -1,15 +1,13 @@
 package cartFlowService.config;
 
-
-import cartFlowService.application.useCases.CreateCart;
-import cartFlowService.application.useCases.DeleteCart;
-import cartFlowService.application.useCases.DeleteCartAfterTTL;
-import cartFlowService.application.useCases.GetCart;
+import cartFlowService.application.useCases.*;
 import cartFlowService.domain.storage.CartRepository;
 import cartFlowService.infra.repositories.Repository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.UUID;
 
 @Configuration
 public class InfraConfiguration {
@@ -40,6 +38,11 @@ public class InfraConfiguration {
     @Bean
     GetCart getCart(CartRepository cartRepository) {
         return new GetCart(cartRepository);
+    }
+
+    @Bean
+    UpdateCart updateCart(CartRepository cartRepository) {
+        return new UpdateCart(cartRepository);
     }
 
 

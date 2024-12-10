@@ -42,4 +42,9 @@ public class Repository implements CartRepository {
         return storage.get(cartId);
     }
 
+    @Override
+    public void updateItem(UUID cartId, Cart cart) {
+        storage.put(cartId, cart);
+    }
+
 }

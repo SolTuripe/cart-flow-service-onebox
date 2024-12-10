@@ -35,12 +35,6 @@ public class GetCartController {
                 .body(bodyResponse);
     }
 
-    /**
-     * Handles CartNotFoundError exceptions thrown during application execution
-     *
-     * @param ex The `CartNotFoundError` exception containing the error message
-     * @return A `ResponseEntity` object with status code 404 and a JSON message describing the error
-     */
     @ExceptionHandler(CartNotFoundError.class)
     public ResponseEntity<String> handleCartNotFoundError(CartNotFoundError ex) {
         return ResponseEntity

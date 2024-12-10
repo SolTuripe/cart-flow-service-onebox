@@ -15,4 +15,6 @@ public interface CartRepository {
 
     Cart getCartById(UUID cartId);
 
+    void updateItem(UUID cartId, Cart cart);
+
 }

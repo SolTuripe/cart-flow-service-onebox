@@ -27,7 +27,7 @@ public class DeleteCartControllerTest {
 
     @Test
     public void shouldFailWhenGetCartFails() throws CartNotFoundError {
-        CartId cartId = new CartId("38400000-8cf0-11bd-b23e-10b96e4ef00d");
+        CartId cartId = new CartId("6e55c340-9992-4d09-8986-8c19fc712f0b");
 
         doThrow(new CartNotFoundError(cartId.value.toString())).when(deleteCart).deleteCart(any());
 

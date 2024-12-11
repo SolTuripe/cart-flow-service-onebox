@@ -1,7 +1,6 @@
 package cartFlowService.infra.controllers;
 
 import cartFlowService.application.request.CreateCartRequest;
-import cartFlowService.application.response.GetCartResponse;
 import cartFlowService.application.useCases.GetCart;
 import cartFlowService.application.useCases.UpdateCart;
 import cartFlowService.domain.errors.CartNotFoundError;
@@ -10,7 +9,6 @@ import cartFlowService.domain.models.CartId;
 import cartFlowService.domain.models.Item;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 
@@ -53,7 +51,7 @@ public class PutCartControllerTest {
         putCartController.updateCart(cartId.value, requestList);
 
         verify(updateCart).updateCart(eq(cartId.value), argThat(items -> {
-            Item item = items.get(0); // Esperamos solo un item
+            Item item = items.get(0);
             return item.getDescription().equals(updatedItem.getDescription()) &&
                     item.getAmount() == updatedItem.getAmount();
         }));
@@ -62,21 +60,21 @@ public class PutCartControllerTest {
 
     }
 
-//    @Test
-//    public void shouldFailWhenCartNotFound() {
-//        CartId cartId      = new CartId("6e55c340-9992-4d09-8986-8c19fc712f0b");
-//        int itemId         = 1;
-//        String description = "Updated Item";
-//        double amount      = 15.0;
-//
-//        PatchCartRequest request = new PatchCartRequest();
-//        request.setDescription(description);
-//        request.setAmount(amount);
-//
-//        doThrow(new CartNotFoundError(cartId.toString())).when(updateCart).updateCart(any(), any());
-//
-//        assertThrows(CartNotFoundError.class, () -> putCartController.updateCart(cartId.value, itemId, request));
-//    }
+    @Test
+    public void shouldFailWhenCartNotFound() throws CartNotFoundError  {
+        CartId cartId      = new CartId("6e55c340-9992-4d09-8986-8c19fc712f0b");
+        String description = "Updated Item";
+        double amount      = 15.0;
 
+        CreateCartRequest request                = new CreateCartRequest();
+        request.setDescription(description);
+        request.setAmount(amount);
+        ArrayList<CreateCartRequest> requestList = new ArrayList<>();
+        requestList.add(request);
+
+        doThrow(new CartNotFoundError(cartId.toString())).when(updateCart).updateCart(any(), any());
+
+        assertThrows(CartNotFoundError.class, () -> putCartController.updateCart(cartId.value, requestList));
+    }
 
 }

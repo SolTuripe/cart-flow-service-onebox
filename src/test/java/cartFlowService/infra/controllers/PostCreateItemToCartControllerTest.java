@@ -18,7 +18,7 @@ public class PostCreateItemToCartControllerTest {
     private final PostCreateItemToCartController postCreateItemToCartController = new PostCreateItemToCartController(createCart);
 
     @Test
-    void canCreateCart() {
+    void canCreateCart() throws InvalidAmountError {
         CreateCartRequest request = new CreateCartRequest();
         request.setId(12);
         request.setDescription("party shoes");
@@ -33,7 +33,7 @@ public class PostCreateItemToCartControllerTest {
     }
 
     @Test
-    void createCartThrowsInvalidAmountError() {
+    void createCartThrowsInvalidAmountError() throws InvalidAmountError {
         CreateCartRequest invalidRequest = new CreateCartRequest();
         invalidRequest.setId(12);
         invalidRequest.setDescription("party shoes");

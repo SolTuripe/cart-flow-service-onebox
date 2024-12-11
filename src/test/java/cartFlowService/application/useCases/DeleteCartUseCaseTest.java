@@ -30,7 +30,7 @@ public class DeleteCartUseCaseTest {
     }
 
     @Test
-    void shouldFailIfCartDoesNotExist() {
+    void shouldFailIfCartDoesNotExist() throws CartNotFoundError {
         CartId cartId = new CartId("6e55c340-9992-4d09-8986-8c19fc712f0b");
         when(cartRepository.findMakId(cartId)).thenReturn(false);
 

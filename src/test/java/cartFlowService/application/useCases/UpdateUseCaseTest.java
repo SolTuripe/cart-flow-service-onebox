@@ -44,7 +44,7 @@ public class UpdateUseCaseTest {
     }
 
     @Test
-    void shouldFailIfCartIdNotExist() {
+    void shouldFailIfCartIdNotExist() throws CartNotFoundError {
         CartId cartId = new CartId("6e55c340-9992-4d09-8986-8c19fc712f0b");
         Item item     = new Item(1, "party shoes", 30.0);
 

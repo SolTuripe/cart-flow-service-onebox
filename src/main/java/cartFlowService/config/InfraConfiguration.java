@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.UUID;
-
 @Configuration
 public class InfraConfiguration {
 
@@ -44,6 +42,5 @@ public class InfraConfiguration {
     UpdateCart updateCart(CartRepository cartRepository) {
         return new UpdateCart(cartRepository);
     }
-
 
 }

@@ -173,6 +173,6 @@ Carts are maintained in memory using a thread-safe data structure, specifically 
 
 ## Author 👩‍💻
 
-In the project, two accounts appear as contributors, but both belong to me. While working on the project from my laptop, it seems that the Git configuration was linked to the account [Sol Merari](https://github.com/SolTuripe), and I didn't realize it at the time. However, I want to clarify that all the work has been done entirely by [Sol Turipe](https://github.com/SolTuripe)
+In the project, two accounts appear as contributors, but both belong to me. While working on the project from my laptop, it seems that the Git configuration was linked to the account [Sol Merari](https://github.com/solmerari), and I didn't realize it at the time. However, I want to clarify that all the work has been done entirely by [Sol Turipe](https://github.com/SolTuripe) 😊
 
 

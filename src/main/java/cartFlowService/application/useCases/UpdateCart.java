@@ -1,8 +1,8 @@
 package cartFlowService.application.useCases;
 
 import cartFlowService.domain.errors.CartNotFoundError;
-import cartFlowService.domain.errors.ItemNotFoundError;
 import cartFlowService.domain.models.Cart;
+import cartFlowService.domain.models.CartId;
 import cartFlowService.domain.models.Item;
 import cartFlowService.domain.storage.CartRepository;
 
@@ -16,23 +16,16 @@ public class UpdateCart {
         this.cartRepository = cartRepository;
     }
 
-    public void updateCart(UUID carId, Item updatedItem) {
+    public void updateCart(UUID carId, ArrayList<Item> updatedItem) {
 
-        Cart cart = cartRepository.getCartById(carId);
-        if (cart == null) {
-            throw new CartNotFoundError(carId.toString());
+        CartId cartId     = new CartId(carId.toString());
+        Cart existingCart = cartRepository.getCartById(cartId.value);
+
+        if (existingCart == null) {
+            throw new CartNotFoundError(cartId.value.toString());
         }
+        existingCart.getItemList().addAll(updatedItem);
 
-        ArrayList<Item> itemList = cart.getItemList();
-
-        boolean itemExists = itemList.stream().anyMatch(item -> item.getId() == updatedItem.getId());
-        if (!itemExists) {
-            throw new ItemNotFoundError(updatedItem.getId());
-        }
-
-        itemList.replaceAll(existingItem ->
-                existingItem.getId() == updatedItem.getId() ? updatedItem : existingItem);
-
-        cartRepository.updateItem(carId, cart);
+        cartRepository.addItemsToACart(existingCart);
     }
 }

@@ -19,7 +19,7 @@ public class GetCartControllerTest {
     private final GetCartController getCartController = new GetCartController(getCart);
 
     @Test
-    void shouldReturnCartSuccessfully() {
+    void shouldReturnCartSuccessfully() throws CartNotFoundError {
         CartId cartId            = new CartId("6e55c340-9992-4d09-8986-8c19fc712f0b");
         ArrayList<Item> itemList = new ArrayList<>();
 

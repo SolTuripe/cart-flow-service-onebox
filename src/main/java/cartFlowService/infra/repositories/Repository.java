@@ -43,8 +43,8 @@ public class Repository implements CartRepository {
     }
 
     @Override
-    public void updateItem(UUID cartId, Cart cart) {
-        storage.put(cartId, cart);
+    public void addItemsToACart(Cart cart) {
+        storage.put(cart.getId().value, cart);
     }
 
 }

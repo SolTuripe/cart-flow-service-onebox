@@ -30,6 +30,24 @@ Utilize Maven to build the project `mvn clean install`
 
 When the application runs, it starts on port 8080.
 
+## Technical Implementation ⚙️
+
+### ID Creation
+
+Cart IDs are generated using a method that produces randomly unique values.
+
+### Cart Expiration
+
+Carts are removed automatically if they remain inactive for 10 minutes. An internal scheduler handles the process by identifying and clearing out inactive carts.
+
+After the 10-minute threshold is reached, the cart is deleted, and an error message is logged to the console:
+
+`Delete Cart After TTL Response: {message = 'Cart with id: 8ea1a9b7-5e55-4209-aff8-ac8744968700 deleted after: 600 sec', ttl in milliseconds = 600000}`
+
+### Data Storage
+
+Carts are maintained in memory using a thread-safe data structure, specifically a `ConcurrentHashMap`. Since no database engine is utilized, all data is erased when the application restarts
+
 ## Test with Postman ✅
 
 ### Endpoints
@@ -40,7 +58,8 @@ When the application runs, it starts on port 8080.
 - **Update cart with new products**: `PUT /carts/{id}`
 
 1. **Create a Cart**
-    - POST: `http://localhost:8080/carts/`
+    - POST: `http://localhost:8080/carts/` \
+   Request:
       ```json
       [
           {
@@ -60,7 +79,7 @@ When the application runs, it starts on port 8080.
           }
       ]
       ```
-    RESPONSE
+    Response:
     ````
    {
     "code": 200,
@@ -73,7 +92,7 @@ When the application runs, it starts on port 8080.
 2. **Delete a Cart**
    - DELETE: `http://localhost:8080/carts/{id}`
    
-     RESPONSE
+     Response
     ````
    {
     "code": 200,
@@ -85,7 +104,7 @@ When the application runs, it starts on port 8080.
 3. **Get Cart Information**
    - GET: `http://localhost:8080/carts/{id}`
      
-   RESPONSE
+   Response
     ````
    {
     "cartId": "c08326b5-9c69-4e9d-a494-29bf77fe4cb5",
@@ -110,19 +129,50 @@ When the application runs, it starts on port 8080.
    
 4. **Update a Cart**
 
-    - PUT: `http://localhost:8080/carts/{id}`
+    - PUT: `http://localhost:8080/carts/{id}` \
+   Request:
 
       ```json
       [
           {
-              "id": 1,
-              "description": "New Product",
-              "amount": 2.0
+              "id": 4,
+              "description": "Another party dress",
+              "amount": 44.99
           }
       ]
       ```
+      
+   Response:
+ ````
+   {
+    "cartId": "7dbe1293-0d3d-41b3-80dc-abf8f7900541",
+    "items": [
+        {
+            "id": 1,
+            "description": "Party dress",
+            "amount": 25.99
+        },
+        {
+            "id": 2,
+            "description": "Party shoes",
+            "amount": 30.99
+        },
+        {
+            "id": 3,
+            "description": "Boots",
+            "amount": 40.99
+        },
+        {
+            "id": 4,
+            "description": "Another party dress",
+            "amount": 44.99
+        }
+    ]
+}
+   ````
 
-   
-## Technical Implementation ⚙️
+## Author 👩‍💻
+
+In the project, two accounts appear as contributors, but both belong to me. While working on the project from my laptop, it seems that the Git configuration was linked to the account [Sol Merari](https://github.com/SolTuripe), and I didn't realize it at the time. However, I want to clarify that all the work has been done entirely by [Sol Turipe](https://github.com/SolTuripe)
 
 
